@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pl">
+<head>
+    <link rel="stylesheet" th:href="@{../formStyle.css}">
+    <meta charset="UTF-8">
+    <title th:text="#{addBookForm.pageTitle}"></title>
+</head>
+<body>
+<form action="#" method="post" th:object="${bookForm}" th:action="@{/book/submit}">
+    <fieldset>
+        <legend th:text="#{addBookForm.legend}"></legend>
+
+        <label th:for="author_input_id" th:text="#{addBookForm.author}"></label>
+        <input type="text" id="author_input_id" th:field="*{author}"/>
+        <span class="errorClass" th:if="${#fields.hasErrors('author')}" th:errors="*{author}"></span>
+
+        <label th:for="title_input_id" th:text="#{addBookForm.title}"></label>
+        <input type="text" id="title_input_id" th:field="*{title}"/>
+        <span class="errorClass" th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></span>
+
+        <label th:for="pages_input_id" th:text="#{addBookForm.pages}"></label>
+        <input type="text" id="pages_input_id" th:field="*{pages}"/>
+        <span class="errorClass" th:if="${#fields.hasErrors('pages')}" th:errors="*{pages}"></span>
+
+        <label th:for="category_input_id" th:text="#{addBookForm.category}"></label>
+        <select class="paddingClass" id="category_input_id" th:field="*{category}">
+            <option th:each="element: ${categories}" th:value="${element}" th:text="${element.getName()}"></option>
+        </select><br/>
+
+        <label th:for="forkids_input_id" th:text="#{addBookForm.forKids}"></label>
+        <select class="paddingClass" id="forkids_input_id" th:field="*{forKids}">
+            <option th:each="element: ${forKids}" th:value="${element}" th:text="${element}"></option>
+        </select><br/>
+
+        <button type="submit" th:text="#{addBookForm.submit}"></button>
+    </fieldset>
+</form>
+
+</body>
+</html>
