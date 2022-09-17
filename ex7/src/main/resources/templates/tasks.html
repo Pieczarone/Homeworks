@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="#{task.title}"></title>
+    <link th:href="@{/css/table.css}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/css/form.css}" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
+</head>
+<body>
+<h1 th:text="#{task.headline}" th:class="task"></h1>
+<table>
+    <tr>
+        <th th:text="#{task.id}"></th>
+        <th th:text="#{task.desc}"></th>
+        <th th:text="#{task.priority}"></th>
+        <th th:text="#{task.date}"></th>
+        <th th:text="#{task.category}"></th>
+    </tr>
+    <tr th:each="task,iterStat : ${tasks}" th:class="${iterStat.odd}? 'grey-row'">
+        <td th:text="${task.id}"></td>
+        <td th:text="${task.description}"></td>
+        <td th:text="${task.priority}"></td>
+        <td th:text="${task.date}"></td>
+        <td th:text="${task.category}"></td>
+    </tr>
+</table>
+<br>
+<div class="relative fullwidth col-xs-12" th:class="button2">
+    <a th:href="@{/task/new}">
+        <button type="button" th:text="#{task.create.task}" class="form-btn semibold"></button>
+    </a>
+</div>
+</body>
+</html>
