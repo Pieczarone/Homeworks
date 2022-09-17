@@ -1,0 +1,39 @@
+<html xmlns:th="http://www.thymeleaf.org" lang="pl">
+<head>
+    <meta charset="utf-8"/>
+    <title th:text="#{bookcase.pageTitle}"></title>
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+          crossorigin="anonymous"/>
+</head>
+<body>
+<div class="container">
+    <br/>
+    <a class="btn btn-dark float-right" th:href="@{/book/add}" role="button" th:text="#{bookcase.addBook}"></a>
+    <br/>
+    <h3 class="text-center" th:text="#{bookcase.pageTitle}"></h3>
+    <br/>
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col" th:text="#{bookcase.author}"></th>
+            <th scope="col" th:text="#{bookcase.title}"></th>
+            <th scope="col" th:text="#{bookcase.category}"></th>
+            <th scope="col" th:text="#{bookcase.pages}"></th>
+            <th scope="col"></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="book : ${bookcase}">
+            <td th:text="${book.getAuthor()}"></td>
+            <td th:text="${book.getTitle()}"></td>
+            <td th:text="${book.getCategory().getName()}"></td>
+            <td th:text="${book.getPages()}"></td>
+            <td th:text="${book.isForKids()}? 'dla dzieci' : ''"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
